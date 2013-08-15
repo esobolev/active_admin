@@ -84,7 +84,7 @@ form {
   input[type=text], input[type=password], input[type=email], input[type=number], input[type=url], input[type=tel], textarea {
     width: 76%;
     border: 1px solid #c9d0d6;
-    @include rounded;
+    // @include rounded;
     font-size: 0.95em;
     @include sans-family;
     outline: none;
@@ -178,7 +178,7 @@ form {
   /* Buttons */
 
   input[type=submit] {
-    @include dark-button;
+    // @include dark-button;
     cursor: pointer;
 
   }
