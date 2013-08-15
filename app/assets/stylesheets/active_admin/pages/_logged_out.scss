@@ -7,7 +7,7 @@ body.logged_out {
     left: 50%;
     width: 500px;
     height: 270px;
-    margin: -175px auto 0 -250px;
+    margin: -185px auto 0 -250px;
     border-radius: 3px;
     #active_admin_content {
       // @include shadow;
@@ -107,8 +107,8 @@ body.logged_out {
     padding: 15px;    
     color: #3a87ad;
     background-color: #d9edf7;
-    border-color: #bce8f1;
-    border: 1px solid #fbeed5;
+    // border-color: #bce8f1;
+    border: 1px solid #bce8f1 !important;
     border-radius: 4px;
   }
 
