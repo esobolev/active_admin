@@ -82,7 +82,7 @@ body.logged_out {
           z-index: 101;
           zoom: 1;
 
-          font-size: 15px;
+          font-size: 14px;
           padding: 8px 18px;
           -webkit-border-radius: 3px;
           -moz-border-radius: 3px;
@@ -93,8 +93,8 @@ body.logged_out {
         input[type="submit"]:focus,
         input[type="submit"]:active,
         input[type="submit"].active {
-           color: #545454;
-          background-color: #e6e6e6;
+          color: #545454;
+          background: #e6e6e6;
         }
       
       }
