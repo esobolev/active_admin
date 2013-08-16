@@ -104,21 +104,11 @@ body.logged_out {
   }
 
   .flash.flash_alert {
-    padding: 15px;    
-    color: #c09853;
-    background-color: #fcf8e3;
-    border: 1px solid #fbeed5;
+    padding: 15px;
+    color: #3a87ad;
+    background-color: #d9edf7;
+    border: 1px solid #bce8f1 !important;
     border-radius: 4px;
   }
 
-}
-
-
-.foot-logo {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 86px;
-  height: 83px;
-  background: transparent url(active_admin_image_path('/customize/foot_logo.png')) top left repeat-x;;
 }
