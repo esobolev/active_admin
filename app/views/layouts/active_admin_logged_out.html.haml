@@ -1,0 +1,47 @@
+<!doctype html>
+%html
+  %head
+    %meta{:charset => "utf-8"}/
+    %meta{:content => "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no", :name => "viewport"}/
+    / Apple devices fullscreen
+    %meta{:content => "yes", :name => "apple-mobile-web-app-capable"}/
+    / Apple devices fullscreen
+    %meta{:content => "black-translucent", :names => "apple-mobile-web-app-status-bar-style"}/
+    %title= [@page_title, render_or_call_method_or_proc_on(self, ActiveAdmin.application.site_title)].compact.join(" | ")
+    
+    / Bootstrap
+    =stylesheet_link_tag "active_admin/theme/bootstrap.min.css"    
+    / Bootstrap responsive
+    =stylesheet_link_tag "active_admin/theme/bootstrap-responsive.min.css"  
+    / icheck
+    =stylesheet_link_tag "active_admin/theme/plugins/icheck/all.css"      
+    / Theme CSS
+    =stylesheet_link_tag "active_admin/theme/style.css"  
+    / Color CSS
+    =stylesheet_link_tag "active_admin/theme/themes.css"  
+    
+    / jQuery
+    =javascript_include_tag "active_admin/theme/jquery.min.js"
+    / Nice Scroll
+    =javascript_include_tag "active_admin/theme/plugins/nicescroll/jquery.nicescroll.min.js"    
+    / Validation
+    =javascript_include_tag "active_admin/theme/plugins/validation/jquery.validate.min.js"
+    =javascript_include_tag "active_admin/theme/plugins/validation/additional-methods.min.js"    
+    / icheck
+    =javascript_include_tag "active_admin/theme/plugins/icheck/jquery.icheck.min.js"    
+    / Bootstrap
+    =javascript_include_tag "active_admin/theme/bootstrap.min.js"
+    =javascript_include_tag "active_admin/theme/eakroko.js"    
+    /[if lte IE 9]
+      =javascript_include_tag "active_admin/theme/plugins/placeholder/jquery.placeholder.min.js"      
+      :javascript
+        $(document).ready(function() {
+          $('input, textarea').placeholder();
+        });      
+    / Favicon
+    %link{:href => image_path("active_admin/img/favicon.ico"), :rel => "shortcut icon"}/
+    / Apple devices Homescreen icon
+    %link{:href => image_path("active_admin/img/apple-touch-icon-precomposed.png"), :rel => "apple-touch-icon-precomposed"}/
+  %body.login
+    .wrapper
+      =yield

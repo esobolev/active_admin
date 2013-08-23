@@ -1,0 +1,29 @@
+%h1
+  %a{:href => "/admin"}
+    %img.retina-ready{:alt => "", :height => "49", :src => image_path("active_admin/img/logo-big.png"), :width => "59"}>/
+    = render_or_call_method_or_proc_on(self, ActiveAdmin.application.site_title)
+.login-body
+  %h2 SIGN IN
+  -#%form#test.form-validate{:action => "index.html", :method => "get"}
+  - scope = Devise::Mapping.find_scope!(resource_name)
+  = active_admin_form_for(resource, :as => resource_name, :url => send(:"#{scope}_session_path"), :html => { :id => "session_new", class: "form-validate" }) do |f|
+    - if active_admin_flash_messages.any?
+      - active_admin_flash_messages.each do |type, message|
+        %div{class: "alert alert-#{type}"}
+          %button{type: "button", class: "close", data: {dismiss: "alert"} }×
+          =message
+
+    .control-group
+      .email.controls
+        %input.input-block-level{"data-rule-email" => "true", "data-rule-required" => "true", :name => "admin_user[email]", :placeholder => "Email address", :type => "text"}/
+    .control-group
+      .pw.controls
+        %input.input-block-level{"data-rule-required" => "true", :name => "admin_user[password]", :placeholder => "Password", :type => "password"}/
+    .submit
+      .remember
+        %input#remember.icheck-me{"data-color" => "blue", "data-skin" => "square", :name => "admin_user[remember_me]", :type => "checkbox"}/
+        %label{:for => "remember"} Remember me
+      %input.btn.btn-primary{:type => "submit", :value => "Sign me in"}/
+  .forget
+    %a{:href => new_password_path(resource_name)}
+      %span Forgot password?
