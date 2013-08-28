@@ -37,8 +37,8 @@ module ActiveAdmin
     end
 
     def commit_action_with_cancel_link
-      action(:submit, {class: "btn btn-inverse"})
-      cancel_link {action: :index}, {class: "btn btn-inverse"}
+      action(:submit)
+      cancel_link
     end
 
     def has_many(association, options = {}, &block)
