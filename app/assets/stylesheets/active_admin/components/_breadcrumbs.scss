@@ -1,13 +1,22 @@
 .breadcrumb {
+  &:before {
+    content: ' ';
+    float: none;
+  }
+
   display: block;
   font-size: 0.9em;
   font-weight: normal;
   line-height: 1.0em;
-  margin-bottom: 12px;
-  text-transform: uppercase;
+  // margin-bottom: 12px;
+  // text-transform: uppercase;
+
+  margin: 10px 0;
+
+  clear: both;
 
   a, a:link, a:visited, a:active {
-    color: #8a949e ;
+    color: #666 ;
     text-decoration: none;
   }
 

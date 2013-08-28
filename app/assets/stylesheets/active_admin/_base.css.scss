@@ -1,9 +1,12 @@
 /* Active Admin CSS */
 // Reset Away!
-@include global-reset;
+// @include global-reset;
+
+@import "active_admin/theme/bootstrap.min";
+@import "active_admin/theme/bootstrap-responsive.min";
 
 // Partials
-@import "active_admin/typography";
+// @import "active_admin/typography";
 @import "active_admin/header";
 @import "active_admin/forms";
 @import "active_admin/components/comments";
@@ -15,7 +18,7 @@
 @import "active_admin/components/blank_slates";
 @import "active_admin/components/breadcrumbs";
 @import "active_admin/components/dropdown_menu";
-@import "active_admin/components/buttons";
+// @import "active_admin/components/buttons";
 @import "active_admin/components/grid";
 @import "active_admin/components/links";
 @import "active_admin/components/pagination";
@@ -30,12 +33,101 @@
 @import "active_admin/structure/main_structure";
 @import "active_admin/structure/title_bar";
 
+
+
+// @import "active_admin/theme/plugins/icheck/all.css";
+@import "active_admin/theme/style.css";
+@import "active_admin/theme/themes.css";
+
+.btn, .actions input[type=submit], form fieldset.actions li.cancel a  {  
+  border-radius: 0 !important;
+  border: none !important;
+  text-shadow: none !important;
+
+  box-shadow: none !important;
+  font-weight: normal !important;
+  
+  color: white !important;
+  font-size: 14px !important;
+  background: #999999;
+  padding: 5px 12px !important;
+  line-height: normal !important;
+  outline: none;
+  &:hover {
+    background: #808080;
+  }  
+}
+
+form fieldset.buttons li.cancel a:not(.disabled):hover, form fieldset.actions li.cancel a:not(.disabled):hover {
+  background: #808080;
+}
+
+.actions input[type=submit] {
+  background: #393 !important;
+  &:hover {
+    background: #267326 !important;
+  }
+}
+
+.thumb, .file.input {
+  img {
+    border: 1px solid #ccc;
+    padding: 2px;
+    &:hover {
+      border-color: rgba(82, 168, 236, 0.8);
+    }
+  }
+}
+
+.has_many_fields {
+  border-bottom: 1px dotted #ddd;
+}
+
+
 body {
-  @include sans-family;
-  line-height: 150%;
-  font-size: 72%;
+  // @include sans-family;  
   background: #fff;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px !important;
+  // line-height: 150%;
+  // font-size: 72%;
   margin: 0;
   padding: 0;
-  color: $text-color;
+  // color: $text-color;
+  color: #333;
 }
+
+
+select {
+  padding: 3px !important;
+  border-radius: 0 !important;
+  outline: none;
+  &:hover, &:focus {
+    border-color: rgba(82, 168, 236, 0.8);
+  }
+}
+
+.boolean.input  {
+  padding-left: 20%;
+  margin-left: 4px;
+}
+
+
+
+// div.file {
+//   overflow:hidden;
+//   width:95px;
+//   height:37px;
+//   cursor:pointer;
+//   background: red;
+// }
+// input[type=file] {
+//   opacity:0;  
+//   font-size:199px;
+//   cursor:pointer;
+//   padding:0px;
+//   margin:0px;
+//   border:none;
+//   margin-left:-450px;
+  
+// }

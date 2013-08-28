@@ -15,11 +15,18 @@ table.index_table {
   border-spacing: 0;
 
   th {
-    @include section-header;
+    // @include section-header;
+    font-size: 13px;
+    font-weight: normal;
     border-right: none;
     text-align: left;
-    padding-left: $cell-horizontal-padding;
-    padding-right: $cell-horizontal-padding;
+    // padding-left: $cell-horizontal-padding;
+    // padding-right: $cell-horizontal-padding;
+
+    border-top: 1px solid #ddd;
+    white-space: nowrap;
+    background: #eee;
+    padding: 10px;
 
     a, a:link, a:visited {
       color: $section-header-text-color;
@@ -40,9 +47,9 @@ table.index_table {
       @include gradient(darken($secondary-gradient-start, 5%), darken($secondary-gradient-stop, 5%));
     }
 
-    &:last-child {
-      border-right: solid 1px #d4d4d4;
-    }
+    // &:last-child {
+    //   border-right: solid 1px #d4d4d4;
+    // }
 
   }
 
@@ -56,6 +63,12 @@ table.index_table {
     padding: 10px $cell-horizontal-padding 8px $cell-horizontal-padding;
     border-bottom: 1px solid #e8e8e8;
     vertical-align: top;
+
+    &:last-child {
+      a {
+        padding-right: 5px;
+      }
+    }
   }
 }
 

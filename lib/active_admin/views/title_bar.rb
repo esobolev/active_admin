@@ -8,14 +8,15 @@ module ActiveAdmin
         @action_items = action_items
         build_titlebar_left
         build_titlebar_right
+        build_breadcrumb 
       end
 
       private
 
       def build_titlebar_left
         div :id => "titlebar_left" do
-          build_breadcrumb
           build_title_tag
+                 
         end
       end
 
