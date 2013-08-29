@@ -2,6 +2,8 @@
 // Reset Away!
 // @include global-reset;
 
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300);
+
 @import "active_admin/theme/bootstrap.min";
 @import "active_admin/theme/bootstrap-responsive.min";
 
@@ -35,6 +37,8 @@
 @import "active_admin/structure/footer";
 @import "active_admin/structure/main_structure";
 @import "active_admin/structure/title_bar";
+
+
 
 
 
