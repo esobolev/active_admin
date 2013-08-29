@@ -12,6 +12,6 @@ $(document).ready(function(){
 
   $('.tags-input').tagsInput({
     'height':'32px',
-    'width':'76%',
+    'width':'75.4%',
   });
 });
