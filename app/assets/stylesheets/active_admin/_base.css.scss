@@ -1,6 +1,8 @@
 /* Active Admin CSS */
 // Reset Away!
 // @include global-reset;
+@import "active_admin/theme/over";
+
 @import "active_admin/theme/bootstrap.min";
 @import "active_admin/theme/bootstrap-responsive.min";
 
@@ -35,11 +37,6 @@
 @import "active_admin/structure/main_structure";
 @import "active_admin/structure/title_bar";
 
-
-
-
-
-@import "active_admin/theme/over";
 
 .btn, .actions input[type=submit], form fieldset.actions li.cancel a  {  
   border-radius: 0 !important;
