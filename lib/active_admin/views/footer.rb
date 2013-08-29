@@ -5,6 +5,7 @@ module ActiveAdmin
       def build
         super :id => "footer"
         # powered_by_message
+        para link_to("AppFellas", "http://appfellas.nl/", target: :_blank)
       end
 
       private
