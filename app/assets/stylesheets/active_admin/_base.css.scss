@@ -1,9 +1,6 @@
 /* Active Admin CSS */
 // Reset Away!
 // @include global-reset;
-
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300);
-
 @import "active_admin/theme/bootstrap.min";
 @import "active_admin/theme/bootstrap-responsive.min";
 
@@ -42,7 +39,7 @@
 
 
 
-// @import "active_admin/theme/plugins/icheck/all.css";
+@import "active_admin/theme/over";
 
 .btn, .actions input[type=submit], form fieldset.actions li.cancel a  {  
   border-radius: 0 !important;
