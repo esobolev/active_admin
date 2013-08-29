@@ -10,5 +10,8 @@ $(document).ready(function(){
     $(".alert").delay("5000").fadeOut();
   }
 
-  $('.tags-input').tagsInput();
+  $('.tags-input').tagsInput({
+    'height':'32px',
+    'width':'76%',
+  });
 });
