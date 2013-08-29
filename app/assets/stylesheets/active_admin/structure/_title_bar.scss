@@ -17,12 +17,14 @@
 
   #titlebar_left, #titlebar_right {
     float: left;
+    width: 80%;
   }
 
   #titlebar_right {
     text-align: right;
     padding-top: 13px;
-    float: right
+    float: right;
+    width: 18%;
   }
 
   h2 {
