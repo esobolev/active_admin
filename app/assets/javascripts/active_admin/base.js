@@ -9,4 +9,6 @@ $(document).ready(function(){
   if($(".alert").size() > 0) {
     $(".alert").delay("5000").fadeOut();
   }
+
+  $('.tags-input').tagsInput();
 });

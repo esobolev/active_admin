@@ -2,6 +2,8 @@
 //= require_tree  ./components/
 //= require_tree  ./pages/
 
+//= require ./theme/jquery.tagsinput.js
+
 // require ./theme/plugins/icheck/jquery.icheck.min
 // require ./theme/plugins/nicescroll/jquery.nicescroll.min
 // require ./theme/plugins/validation/jquery.validate.min
