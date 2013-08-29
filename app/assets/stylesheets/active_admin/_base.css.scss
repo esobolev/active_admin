@@ -5,6 +5,9 @@
 @import "active_admin/theme/bootstrap.min";
 @import "active_admin/theme/bootstrap-responsive.min";
 
+@import "active_admin/theme/style";
+@import "active_admin/theme/themes";
+
 // Partials
 // @import "active_admin/typography";
 @import "active_admin/header";
@@ -36,8 +39,7 @@
 
 
 // @import "active_admin/theme/plugins/icheck/all.css";
-@import "active_admin/theme/style";
-@import "active_admin/theme/themes";
+
 
 .btn, .actions input[type=submit], form fieldset.actions li.cancel a  {  
   border-radius: 0 !important;
