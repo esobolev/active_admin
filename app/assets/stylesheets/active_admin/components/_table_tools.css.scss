@@ -25,6 +25,7 @@ a.table_tools_button, .table_tools .dropdown_menu_button {
   @include light-button;
   // @include gradient(#FFFFFF, #F0F0F0);
   // @include border-colors(#d9d9d9, #d0d0d0, #c5c5c5);
+  box-shadow: none !important;
   font-size: 0.9em;
   text-decoration: none;
   padding: 4px 14px 4px;

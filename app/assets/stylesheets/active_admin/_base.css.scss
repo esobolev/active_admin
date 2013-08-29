@@ -40,7 +40,6 @@
 
 // @import "active_admin/theme/plugins/icheck/all.css";
 
-
 .btn, .actions input[type=submit], form fieldset.actions li.cancel a  {  
   border-radius: 0 !important;
   border: none !important;
@@ -89,7 +88,7 @@ form fieldset.buttons li.cancel a:not(.disabled):hover, form fieldset.actions li
 body {
   // @include sans-family;  
   background: #fff;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Open Sans', sans-serif !important;
   font-size: 13px !important;
   // line-height: 150%;
   // font-size: 72%;
@@ -132,4 +131,14 @@ select {
 //   border:none;
 //   margin-left:-450px;
   
+// }
+
+
+// .btn.btn-red{
+//   background:#e51400 !important;
+//   color:#fff !important;
+// }
+
+// .btn.btn-red:hover{
+//   background:#b21000 !important;
 // }
