@@ -16,7 +16,7 @@
   clear: both;
 
   a, a:link, a:visited, a:active {
-    color: #666 ;
+    color: $breadcrumbs-color;
     text-decoration: none;
   }
 
@@ -24,6 +24,6 @@
 
   .breadcrumb_sep {
     margin: 0 2px;
-    color: #aab2ba;
+    color: $breadcrumbs-separator-color;
   }
 }

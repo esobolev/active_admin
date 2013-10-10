@@ -19,7 +19,8 @@ module ActiveAdmin
 
       protected
 
-      # Returns the default filter type for a given attribute
+      # Returns the default filter type for a given attribute. If you want
+      # to use a custom search method, you have to specify the type yourself.
       def default_input_type(method, options = {})
         if method =~ /_(contains|starts_with|ends_with)\z/
           :string
@@ -63,8 +64,7 @@ module ActiveAdmin
         options  = defaults.deep_merge(options).deep_merge(required)
 
         form_for search, options do |f|
-          filters.group_by{ |o| o[:attribute] }.each do |attribute, array|
-            opts     = array.last # grab last-defined `filter` call from DSL
+          filters.each do |attribute, opts|
             should   = opts.delete(:if)     || proc{ true }
             shouldnt = opts.delete(:unless) || proc{ false }
 
