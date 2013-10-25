@@ -1,4 +1,4 @@
-describe "ActiveAdmin.Popover", ->
+describe "AA.Popover", ->
   $wrapper = undefined
   $button = undefined
   $popover = undefined

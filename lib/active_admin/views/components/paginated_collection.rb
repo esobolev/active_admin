@@ -66,19 +66,17 @@ module ActiveAdmin
           build_pagination
           div(page_entries_info(options).html_safe, :class => "pagination_information")
 
-          download_links = @download_links.is_a?(Proc) ? instance_exec(&@download_links) : @download_links
-
-          if download_links.is_a?(Array) && !download_links.empty?
-            build_download_format_links download_links
+          if @download_links.is_a?(Array) && !@download_links.empty?
+            build_download_format_links @download_links
           else
-            build_download_format_links unless download_links == false
+            build_download_format_links unless @download_links == false
           end
 
         end
       end
 
       def build_pagination
-        options = request.path_parameters
+        options =  request.query_parameters.except(:commit, :format)
         options[:param_name] = @param_name if @param_name
 
         text_node paginate(collection, options.symbolize_keys)

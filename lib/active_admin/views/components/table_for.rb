@@ -60,20 +60,19 @@ module ActiveAdmin
       end
 
       def build_table_header(col)
-        classes  = Arbre::HTML::ClassList.new
+        classes = Arbre::HTML::ClassList.new
         sort_key = sortable? && col.sortable? && col.sort_key
-        params   = request.query_parameters.except :page, :order, :commit, :format
 
         classes << 'sortable'                         if sort_key
         classes << "sorted-#{current_sort[1]}"        if sort_key && current_sort[0] == sort_key
         classes << col.html_class
 
         if sort_key
-          th class: classes do
-            link_to col.pretty_title, params: params, order: "#{sort_key}_#{order_for_sort_key(sort_key)}"
+          th :class => classes do
+            link_to(col.pretty_title, params.merge(:order => "#{sort_key}_#{order_for_sort_key(sort_key)}").except(:page))
           end
         else
-          th col.pretty_title, class: classes
+          th(col.pretty_title, :class => classes)
         end
       end
 
@@ -125,17 +124,11 @@ module ActiveAdmin
 
         attr_accessor :title, :data , :html_class
 
-        def initialize(*args, &block) 
+        def initialize(*args, &block)
           @options = args.extract_options!
 
           @title = args[0]
-          html_classes = [:col]
-          if @options.has_key?(:class)
-            html_classes << @options.delete(:class)
-          elsif @title.present?
-            html_classes << "col-#{@title.to_s.parameterize('_')}"
-          end
-          @html_class = html_classes.join(' ')
+          @html_class = @options.delete(:class) || @title.to_s.downcase.underscore.gsub(/ +/,'_')
           @data  = args[1] || args[0]
           @data = block if block
           @resource_class = args[2]

@@ -38,10 +38,7 @@ module ActiveAdmin
     attr_reader :collection_actions
 
     # The default sort order to use in the controller
-    attr_writer :sort_order
-    def sort_order
-      @sort_order ||= (resource_class.respond_to?(:primary_key) ? resource_class.primary_key.to_s : 'id') + '_desc'
-    end
+    attr_accessor :sort_order
 
     # Set the configuration for the CSV
     attr_writer :csv_builder
@@ -60,8 +57,8 @@ module ActiveAdmin
       def initialize(namespace, resource_class, options = {})
         @namespace = namespace
         @resource_class_name = "::#{resource_class.name}"
-        @options    = options
-        @sort_order = options[:sort_order]
+        @options = default_options.merge(options)
+        @sort_order = @options[:sort_order]
         @member_actions, @collection_actions = [], []
       end
     end
@@ -151,6 +148,12 @@ module ActiveAdmin
       "ActiveAdmin::Resource#resource is deprecated. Please use #resource_class instead."
 
     private
+
+    def default_options
+      {
+        :sort_order => (resource_class.respond_to?(:primary_key) ? resource_class.primary_key.to_s : 'id') + '_desc'
+      }
+    end
 
     def default_csv_builder
       @default_csv_builder ||= CSVBuilder.default_for_resource(resource_class)

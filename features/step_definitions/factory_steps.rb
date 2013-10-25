@@ -1,16 +1,15 @@
 def create_user(name, type = 'User')
-  first_name, last_name = name.split(' ')
-  user = type.camelize.constantize.where(:first_name => first_name, :last_name => last_name).first_or_create(:username => name.gsub(' ', '').underscore)
+  type.camelize.constantize.
+    find_or_create_by_first_name_and_last_name *name.split(' '), :username => name.gsub(' ', '').underscore
 end
 
-Given /^(a|\d+)( published)? posts?(?: with the title "([^"]*)")?(?: and body "([^"]*)")?(?: written by "([^"]*)")?(?: in category "([^"]*)")? exists?$/ do |count, published, title, body, user, category_name|
+Given /^(a|\d+)( published)? posts?(?: with the title "([^"]*)")?(?: and body "([^"]*)")?(?: written by "([^"]*)")? exists?$/ do |count, published, title, body, user|
   count     = count == 'a' ? 1 : count.to_i
   published = Time.now          if published
   author    = create_user(user) if user
-  category  = Category.where(name: category_name).first_or_create if category_name
   title   ||= "Hello World %i"
   count.times do |i|
-    Post.create! :title => title % i, :body => body, :author => author, :published_at => published, category_id: category.try(:id)
+    Post.create! :title => title % i, :body => body, :author => author, :published_at => published
   end
 end
 

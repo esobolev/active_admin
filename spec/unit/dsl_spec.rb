@@ -8,7 +8,7 @@ end
 
 describe ActiveAdmin::DSL do
 
-  let(:config){ double }
+  let(:config){ mock }
   let(:application) { ActiveAdmin::Application.new }
   let(:namespace) { ActiveAdmin::Namespace.new application, :admin }
   let(:resource_config) { ActiveAdmin::Resource.new namespace, Post }

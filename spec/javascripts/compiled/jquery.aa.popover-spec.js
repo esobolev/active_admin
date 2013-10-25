@@ -1,6 +1,6 @@
 (function() {
 
-  describe("ActiveAdmin.Popover", function() {
+  describe("AA.Popover", function() {
     var $button, $popover, $wrapper, popover;
     $wrapper = void 0;
     $button = void 0;

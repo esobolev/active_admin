@@ -58,14 +58,7 @@ Given /^a(?:n? (index|show))? configuration of:$/ do |action, config_content|
   case action
   when 'index'
     step 'I am logged in'
-    case resource = config_content.match(/ActiveAdmin\.register (\w+)/)[1]
-    when 'Post'
-      step 'I am on the index page for posts'
-    when 'Category'
-      step 'I am on the index page for categories'
-    else
-      raise "#{resource} is not supported"
-    end
+    step 'I am on the index page for posts'
   when 'show'
     case resource = config_content.match(/ActiveAdmin\.register (\w+)/)[1]
     when 'Post'

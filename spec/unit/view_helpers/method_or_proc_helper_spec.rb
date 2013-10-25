@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 describe MethodOrProcHelper do
-  let(:receiver) { double }
+  let(:receiver) { mock }
 
   let(:context) do
-    obj = double receiver_in_context: receiver
+    obj = mock(:receiver_in_context => receiver)
     obj.extend MethodOrProcHelper
     obj
   end
@@ -78,7 +78,7 @@ describe MethodOrProcHelper do
     context "when a proc and :exec => false" do
 
       it "should call the proc and pass in the receiver" do
-        obj_not_in_context = double
+        obj_not_in_context = mock
 
         test_proc = Proc.new do |arg|
           raise "Success!" if arg == receiver && obj_not_in_context
@@ -93,9 +93,5 @@ describe MethodOrProcHelper do
 
 
   end
-
-  pending "#render_or_call_method_or_proc_on"
-
-  pending "#render_in_context"
 
 end

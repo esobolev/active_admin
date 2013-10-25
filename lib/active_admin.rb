@@ -1,16 +1,14 @@
-require 'active_support/core_ext/class/attribute' # needed for Ransack
-require 'ransack'
-require 'ransack_ext'
+require 'meta_search'
 require 'bourbon'
 require 'devise'
 require 'kaminari'
 require 'formtastic'
-require 'sass-rails'
+require 'sass'
 require 'inherited_resources'
 require 'jquery-rails'
-require 'jquery-ui-rails'
-require 'coffee-rails'
 require 'arbre'
+require 'active_admin/dependency_checker'
+require 'active_admin/sass/helpers'
 require 'active_admin/engine'
 
 module ActiveAdmin
@@ -21,6 +19,7 @@ module ActiveAdmin
   autoload :Authorization,            'active_admin/authorization_adapter'
   autoload :AuthorizationAdapter,     'active_admin/authorization_adapter'
   autoload :Breadcrumbs,              'active_admin/breadcrumbs'
+  autoload :CanCanAdapter,            'active_admin/cancan_adapter'
   autoload :Callbacks,                'active_admin/callbacks'
   autoload :Component,                'active_admin/component'
   autoload :BaseController,           'active_admin/base_controller'
@@ -74,6 +73,12 @@ module ActiveAdmin
     delegate :load!,         :to => :application
     delegate :routes,        :to => :application
 
+    # Returns true if this rails application has the asset
+    # pipeline enabled.
+    def use_asset_pipeline?
+      DependencyChecker.rails_3_1? && Rails.application.config.try(:assets).try(:enabled)
+    end
+
     # A callback is triggered each time (before) Active Admin loads the configuration files.
     # In development mode, this will happen whenever the user changes files. In production
     # it only happens on boot.
@@ -113,13 +118,9 @@ module ActiveAdmin
 
 end
 
-# Require internal plugins
+ActiveAdmin::DependencyChecker.check!
+
+# Require internal Plugins
+require 'active_admin/comments'
 require 'active_admin/batch_actions'
 require 'active_admin/filters'
-
-# Require ORM-specific plugins
-require 'active_admin/orm/active_record' if defined?(::ActiveRecord)
-require 'active_admin/orm/mongoid' if defined?(::Mongoid)
-
-# Load gem-specific code only if that gem is being used
-require 'active_admin/cancan_adapter' if Gem.loaded_specs['cancan']

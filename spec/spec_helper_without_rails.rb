@@ -8,9 +8,4 @@ Bundler.setup
 require 'detect_rails_version'
 ENV['RAILS'] = detect_rails_version
 
-require 'simplecov'
-
-SimpleCov.start do
-  add_filter 'spec/'
-  add_filter 'features/'
-end
+require 'coveralls' and Coveralls.wear_merged! if ENV['TRAVIS']

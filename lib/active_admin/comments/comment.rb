@@ -9,9 +9,7 @@ module ActiveAdmin
     belongs_to :resource, :polymorphic => true
     belongs_to :author,   :polymorphic => true
 
-    unless Rails::VERSION::MAJOR > 3 && !defined? ProtectedAttributes
-      attr_accessible :resource, :resource_id, :resource_type, :body, :namespace
-    end
+    attr_accessible :resource, :resource_id, :resource_type, :body, :namespace
 
     validates_presence_of :body, :namespace, :resource
 

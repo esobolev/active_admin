@@ -5,21 +5,21 @@ module ActiveAdmin
       class Form < Base
 
         def title
-          assigns[:page_title] || I18n.t("active_admin.#{params[:action]}_model",
-                                         model: active_admin_config.resource_label)
+          I18n.t("active_admin.#{params[:action]}_model",
+                 :model => active_admin_config.resource_label)
         end
 
         def form_presenter
-          active_admin_config.get_page_presenter(:form) || default_form_config
+            active_admin_config.get_page_presenter(:form) || default_form_config
         end
 
         def main_content
-          options = default_form_options.merge form_presenter.options
+          form_options = default_form_options.merge(form_presenter.options)
 
-          if options[:partial]
-            render options[:partial]
+          if form_options[:partial]
+            render(form_options[:partial])
           else
-            active_admin_form_for resource, options do |f|
+            active_admin_form_for(resource, form_options) do |f|
               instance_exec f, &form_presenter.block
             end
           end

@@ -1,4 +1,4 @@
-window.ActiveAdmin.TableCheckboxToggler = class ActiveAdmin.TableCheckboxToggler extends ActiveAdmin.CheckboxToggler
+window.AA.TableCheckboxToggler = class AA.TableCheckboxToggler extends AA.CheckboxToggler
   _init: ->
     super
 
@@ -22,4 +22,4 @@ window.ActiveAdmin.TableCheckboxToggler = class ActiveAdmin.TableCheckboxToggler
     $(cell).parent('tr').find(':checkbox').click()
 
 jQuery ($)->
-  $.widget.bridge 'tableCheckboxToggler', ActiveAdmin.TableCheckboxToggler
+  $.widget.bridge 'tableCheckboxToggler', AA.TableCheckboxToggler

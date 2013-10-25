@@ -3,6 +3,16 @@
 This is a guide to contributing to Active Admin. It should walk you through the
 major steps to contributing code to the project.
 
+### 0. 'The test suite is failing locally!'
+
+If your test suite is failing locally and the 
+[Travis build](https://secure.travis-ci.org/gregbell/active_admin.png?branch=master)
+ is passing, you've likely already generated the rails app that is used by 
+ActiveAdmin's test suite and the generated rails app has erroneous files.
+
+To fix this, remove the generated rails app by deleting the directory and its 
+contents (`rm -rf spec/rails`) and then re-running the test suite.
+
 ### 1. Create an Issue on GitHub
 
 The first step to contributing to Active Admin is creating a ticket in our
@@ -23,28 +33,33 @@ use a descriptive name for your branch.
 For example a great branch name would be (where issue #325 is the ticket you're
 working on):
 
-```sh
-git checkout -b 325-add-japanese-translations
-```
+    $> git checkout -b 325-add-japanese-translations
+
 
 ### 3. Get the test suite running
 
-Install the development dependencies:
-```sh
-bundle install
-```
+Active Admin is a gem that many people and businesses rely on for managing data
+in their production applications. Bugs are not cool. Although we're not perfect,
+we pride ourselves on writing well tested code. I hope you do too :)
+
+Active Admin uses rspec and cucumber for it's test suite.
+
+Make sure you have a recent version of bundler:
+
+    $> gem install bundler
+
+Then install the development the development dependencies:
+
+    $> bundle install
 
 Now you should be able to run the entire suite using:
-```sh
-rake test
-```
 
-Which will generate a rails application in `spec/rails` to run the tests against.
+    $> rake test
 
-If your tests are passing locally but they're failing on Travis, reset test your environment:
-```sh
-rm -rf spec/rails && bundle update
-```
+`rake test` runs the unit specs, integration specs and cucumber scenarios. The
+test suite will generate a rails application in `spec/rails` to run the tests
+against.
+
 
 ### 4. Implement your fix or feature
 
@@ -58,41 +73,37 @@ a look at your changes in a browser (preferably a few browsers if you made view
 changes).
 
 To boot up a test rails application, use the provided script:
-```sh
-script/local server
-```
+
+    $> ./script/local server
 
 This will generate a rails application at ./test-rails-app with some sane
 defaults and use your local version of Active Admin.
 
 If you have any Bundler issues, call the provided `use_rails` script then prepend
 the version of rails you would like to use in an environment variable:
-```sh
-script/use_rails 4.0.0
-RAILS=4.0.0 script/local server
-```
+
+    $> ./script/use_rails 3.1.0
+    $> RAILS=3.1.0 ./script/local server
 
 You should be able to open `http://localhost:3000/admin` and view a test
 environment.
 
 If you need to perform any other commands on the test application, use the
 `local` script. For example to boot the rails console:
-```sh
-script/local console
-```
+
+    $> ./script/local console
 
 Or to migrate the database:
-```sh
-script/local rake db:migrate
-```
+
+    $> ./script/local rake db:migrate
+
 
 ### 6. Run tests against major supported rails versions
 
 Once you've implemented your code, got the tests passing, previewed it in a
 browser, you're ready to test it against multiple versions of Rails.
-```sh
-rake test:major_supported_rails
-```
+
+    $> rake test:major_supported_rails
 
 This command runs the cukes and specs against a couple of major versions of
 Rails.  We will run this command when we review your pull request, if this

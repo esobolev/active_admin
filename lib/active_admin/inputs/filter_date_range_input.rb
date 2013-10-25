@@ -14,12 +14,12 @@ module ActiveAdmin
       end
 
       def gt_input_name
-        "#{method}_gteq"
+        "#{method}_gte"
       end
       alias :input_name :gt_input_name
 
       def lt_input_name
-        "#{method}_lteq"
+        "#{method}_lte"
       end
 
       def input_html_options(input_name = gt_input_name)

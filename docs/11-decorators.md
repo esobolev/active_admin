@@ -1,7 +1,7 @@
 # Decorators
 
 Active Admin supports the use of decorators for resources. Resources will be
-decorated for the index and show blocks. The
+be decorated for the index and show blocks. The
 [draper](https://github.com/drapergem/draper) gem is recommended but not required
 (more on requirements below). Note, that Active Admin works out of the box with
 Draper `>= 1.0.0`.

@@ -1,7 +1,7 @@
 module ActiveAdmin
   module Generators
     class ResourceGenerator < Rails::Generators::NamedBase
-      desc "Registers resources with Active Admin"
+      desc "Installs ActiveAdmin in a rails 3 application"
 
       def self.source_root
         @_active_admin_source_root ||= File.expand_path("../templates", __FILE__)

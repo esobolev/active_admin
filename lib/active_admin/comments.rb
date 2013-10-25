@@ -1,17 +1,19 @@
-require 'active_admin/orm/active_record/comments/comment'
-require 'active_admin/orm/active_record/comments/views'
-require 'active_admin/orm/active_record/comments/show_page_helper'
-require 'active_admin/orm/active_record/comments/namespace_helper'
-require 'active_admin/orm/active_record/comments/resource_helper'
+require 'active_admin/comments/comment'
+require 'active_admin/comments/views'
+require 'active_admin/comments/show_page_helper'
+require 'active_admin/comments/namespace_helper'
+require 'active_admin/comments/resource_helper'
 
 # Add the comments configuration
 ActiveAdmin::Application.inheritable_setting :allow_comments,             true
 ActiveAdmin::Application.inheritable_setting :show_comments_in_menu,      true
 ActiveAdmin::Application.inheritable_setting :comments_registration_name, 'Comment'
 
-# Insert helper modules
+# Add the comments module to ActiveAdmin::Namespace
 ActiveAdmin::Namespace.send :include, ActiveAdmin::Comments::NamespaceHelper
-ActiveAdmin::Resource.send  :include, ActiveAdmin::Comments::ResourceHelper
+
+# Add the comments module to ActiveAdmin::Resource
+ActiveAdmin::Resource.send :include, ActiveAdmin::Comments::ResourceHelper
 
 # Add the module to the show page
 ActiveAdmin.application.view_factory.show_page.send :include, ActiveAdmin::Comments::ShowPageHelper
@@ -43,27 +45,24 @@ ActiveAdmin.after_load do |app|
           comment.author    = current_active_admin_user
         end
 
+        # Redirect to the resource show page after comment creation
         controller do
           # Prevent N+1 queries
           def scoped_collection
             resource_class.includes :author, :resource
-          end
-
-          # Redirect to the resource show page after comment creation
+          end unless Rails::VERSION::MAJOR == 3 && Rails::VERSION::MINOR == 0
           def create
             create! do |success, failure|
-              success.html{ redirect_to :back }
+              # FYI: below we call `resource.resource`. First is the comment, second is the associated resource.
+              resource_config = active_admin_config.namespace.resource_for resource.resource.class
+              resource_url    = resource_config.route_instance_path        resource.resource
+              success.html{ redirect_to resource_url }
               failure.html do
-                flash[:error] = I18n.t 'active_admin.comments.errors.empty_text'
-                redirect_to :back
+                flash[:error] = I18n.t('active_admin.comments.errors.empty_text')
+                redirect_to resource_url
               end
             end
           end
-
-          # Define the permitted params in case the app is using Strong Parameters
-          def permitted_params
-            params.permit active_admin_comment: [:body, :namespace, :resource_id, :resource_type]
-          end unless Rails::VERSION::MAJOR == 3 && !defined? StrongParameters
         end
 
         index do

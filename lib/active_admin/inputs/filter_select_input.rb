@@ -3,29 +3,17 @@ module ActiveAdmin
     class FilterSelectInput < ::Formtastic::Inputs::SelectInput
       include FilterBase
 
-      # If Ransack will likely respond to the given method, use it.
-      #
-      # Otherwise:
       # When it's a HABTM or has_many association, Formtastic builds "object_ids".
       # That doesn't fit our scenario, so we override it here.
       def input_name
-        return method if seems_searchable?
-
-        # Deal with has_many :through relationships in filters
-        # If the relationship is a HMT, we set the search logic to be something
-        # like :#{through_association}_#{end_association_id}.
-        if through_association?
-          name = [reflection.through_reflection.name, reflection.source_reflection.foreign_key].join('_')
-        else
-          name = method.to_s
-          name.concat '_id' if reflection
-        end
+        name = method.to_s
+        name.concat '_id' if reflection
         name.concat multiple? ? '_in' : '_eq'
       end
 
-      # Provide the AA translation to the blank input field.
-      def include_blank
-        I18n.t 'active_admin.any' if super
+      # Include the "Any" option if it's a dropdown, but not if it's a multi-select.
+      def input_options
+        super.merge :include_blank => multiple? ? false : I18n.t('active_admin.any')
       end
 
       # was "#{object_name}[#{association_primary_key}]"
@@ -41,15 +29,14 @@ module ActiveAdmin
 
       # Provides an efficient default lookup query if the attribute is a DB column.
       def collection
-        if !options[:collection] && column
-          pluck_column
-        else
-          super
+        unless Rails::VERSION::MAJOR == 3 && Rails::VERSION::MINOR < 2
+          return pluck_column if !options[:collection] && column_for(method)
         end
+        super
       end
 
       def pluck_column
-        klass.reorder("#{method} asc").uniq.pluck method
+        @object.base.reorder("#{method} asc").uniq.pluck method
       end
 
     end

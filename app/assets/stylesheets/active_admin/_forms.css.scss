@@ -156,11 +156,6 @@ form {
       }
     }
 
-    /* Hidden fields */
-    &.hidden {
-      padding: 0;
-    }
-
     /* Errors */
     p.inline-errors {
       color: $error-color;
@@ -232,7 +227,7 @@ $sidebar-inner-content-width: $sidebar-width - ($section-padding * 2);
   label {
     display: block;
     text-transform: uppercase;
-    color:  $form-label-color;
+    color: $section-header-text-color;
     font-size: 0.9em;
     font-weight: bold;
   }
@@ -292,7 +287,7 @@ form.filter_form {
       }
 
       input[type=text] {
-        background: #fff image-url('active_admin/datepicker/datepicker-input-icon.png') no-repeat 100% 7px;
+        background: #fff url(active_admin_image_path('datepicker/datepicker-input-icon.png')) no-repeat 100% 7px;
         padding-right: $date-range-filter-input-right-padding;
         width: $date-range-filter-input-width;
       }
