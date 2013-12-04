@@ -9,10 +9,13 @@
     %meta{:content => "black-translucent", :names => "apple-mobile-web-app-status-bar-style"}/
     %title= [@page_title, render_or_call_method_or_proc_on(self, ActiveAdmin.application.site_title)].compact.join(" | ")
     
-    -ActiveAdmin.application.stylesheets.each do |style, options|
-      =stylesheet_link_tag style, options
-    -ActiveAdmin.application.javascripts.each do |path|    
-      = javascript_include_tag path  
+    -#-ActiveAdmin.application.stylesheets.each do |style, options|
+    -#  =stylesheet_link_tag style, options
+    -#-ActiveAdmin.application.javascripts.each do |path|    
+    -#  = javascript_include_tag path  
+
+    =stylesheet_link_tag "active_admin", media: "all"    
+    =javascript_include_tag "active_admin"
     
     / Favicon
     %link{:href => image_path("active_admin/img/favicon.ico"), :rel => "shortcut icon"}/
