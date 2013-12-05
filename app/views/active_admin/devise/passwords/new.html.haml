@@ -16,8 +16,8 @@
       .email.controls
         %input.input-block-level{"data-rule-email" => "true", "data-rule-required" => "true", :name => "admin_user[email]", :placeholder => "Email address", :type => "text", style: "width: 100%"}/
     
-    .submit      
-      %input.btn.btn-primary{:type => "submit", :value =>  t('active_admin.devise.reset_password.submit')}/
+    .submit{style: "text-align: center"}
+      %input.btn.btn-primary{:type => "submit", :value =>  t('active_admin.devise.reset_password.submit'), style: "padding: 10px 40px; width: 100%;"}/
   .forget
     %a{:href => new_session_path(resource_name)}
       %span Sign in

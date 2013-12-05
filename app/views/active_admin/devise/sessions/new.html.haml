@@ -19,11 +19,11 @@
     .control-group
       .pw.controls
         %input.input-block-level{"data-rule-required" => "true", :name => "admin_user[password]", :placeholder => "Password", :type => "password", style: "width: 100%"}/
-    .submit
-      .remember
+    .submit{style: "text-align: center"}
+      -#.remember
         %input#remember.icheck-me{"data-color" => "blue", "data-skin" => "square", :name => "admin_user[remember_me]", :type => "checkbox"}/
         %label{:for => "remember"} Remember me
-      %input.btn.btn-primary{:type => "submit", :value => "Sign me in"}/
+      %input.btn.btn-primary{:type => "submit", :value => "Sign me in", style: "padding: 10px 40px; width: 100%;"}/
   .forget
     %a{:href => new_password_path(resource_name)}
       %span Forgot password?
